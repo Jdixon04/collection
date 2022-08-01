@@ -21,9 +21,9 @@ class unitTests extends TestCase  {
     public function testFailureDisplayPlayer()
     {
         //expected result of the test
-        $expected = '<p>Name: ' . 'Lebron James' . '</p>'.'<p>points: ' . '37062' . '</p>'.'<p>games: ' . '1366'. '</p>'.'<p>rings: ' . '4' . '</p>';
+        $expected = 'no data';
         //input for the test to get the result
-        $testInput1 = [['name' => 'Lebron James','points' => 37062, 'games' => 1366,'rings' => 4]];
+        $testInput1 = [];
         //run the real function with the input
         $case = displayPlayers($testInput1);
         //compare the expected result with the actual result
@@ -33,11 +33,11 @@ class unitTests extends TestCase  {
     public function testMalformedDisplayPlayer ()
     {
         //input for the test to get the result
-        $testInput1 = [1,2,3,4];
+        $testInput1 = 'hi';
         // tell phpunit it should expect an error to be thrown
         $this->expectException(TypeError::class);
         //run the real function with the input
-        $case = sum($testInput1);
+        $case = displayPlayers($testInput1);
         
     }
 }

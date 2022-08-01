@@ -7,6 +7,9 @@
 //  * @return echos out the details from the player
 //  */
 function displayPlayers(array $players){
+    if (count($players) == 0){
+        return 'no data';
+    } else {
     $result = '';
     foreach($players as $player){
         $result .= '<p>Name: ' . $player['name'] . '</p>';
@@ -15,4 +18,5 @@ function displayPlayers(array $players){
         $result .= '<p>rings: ' . $player['rings'] . '</p>';
     } 
     return $result;
+}
 }
