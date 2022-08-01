@@ -1,7 +1,7 @@
 <?php 
 
 //  * Takes the data from the database, separates the array into individual players stats and then echos
-//  * out the information
+//  * out the information while checking that the array is populated 
 //  *
 //  * @param array $players
 //  * @return echos out the details from the player
