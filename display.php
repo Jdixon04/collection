@@ -1,5 +1,5 @@
 <?php 
-
+require_once 'functions.php';
 
 
 
@@ -13,25 +13,9 @@ $players = $query->fetchAll();
 // var_dump($players);
 // echo '</pre>';
 
-/**
- * Takes the data from the database, separates the array into individual players stats and then echos
- * out the information
- *
- * @param array $players
- * @return echos out the details from the player
- */
-function displayplayers(array $players){
-    $results = '';
-    foreach($players as $player){
-        echo '<p>Name: ' . $player['name'] . '</p>';
-        echo '<p>points:' . $player['points'] . '</p>';
-        echo '<p>games: ' . $player['games'] . '</p>';
-        echo '<p>rings: ' . $player['rings'] . '</p>';
-    } return $results;
-}
+$result = displayPlayers($players);
 
-displayplayers($players);
-
+echo $result;
 
 
 
