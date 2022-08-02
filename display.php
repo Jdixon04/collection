@@ -11,7 +11,9 @@ $result = displayPlayers($players);
 <html>
     <head></head>
     <body>
+        <a href="input.php">want to create a new player? Click here!</a>
         <div> <?echo $result?> </div>
+        </form>
     </body>
 </html>
 
