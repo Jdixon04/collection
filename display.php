@@ -1,20 +1,19 @@
 <?php 
 require_once 'functions.php';
 
-$db = new PDO('mysql:host=db; dbname=cuttlefish', 'root', 'password');
-$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$query = $db->prepare("SELECT `name`, `points`, `games`,`rings` FROM `nba`");
-$query->execute();
-$players = $query->fetchAll();
+$db = connectDatabase();
 
-// echo '<pre>';
-// var_dump($players);
-// echo '</pre>';
+$players = pullData($db);
 
 $result = displayPlayers($players);
+?>
 
-echo $result;
-
+<html>
+    <head></head>
+    <body>
+        <div> <?echo $result?> </div>
+    </body>
+</html>
 
 
 
