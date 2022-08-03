@@ -1,51 +1,64 @@
 <?php 
+require_once 'functions.php';
 
+$db = connectDatabase();
 
+if (isset($_POST['name']) && ($_POST['name'] !== '')){
+ $name = $_POST['name']; 
+} else {
+header('location:  input.php');
+}
 
-// use an isset for each of the post 
-$name = $_POST['name']; 
-$points = $_POST['points'];
+if (isset($_POST['points']) && ($_POST['points'] !== '')){
+  $points = $_POST['points']; 
+ } else {
+ header('location:  input.php');
+ }
 
-$games = $_POST['games'];
-$rings = $_POST['rings'];
+ if (isset($_POST['games']) && ($_POST['games'] !== '')){
+  $games = $_POST['games']; 
+ } else {
+ header('location:  input.php');
+ }
+ 
+if (isset($_POST['rings']) && ($_POST['rings'] !== '')){
+  $rings = $_POST['rings']; 
+ } else {
+ header('location:  input.php');
+ }
+ 
+$dbInsert = $db->prepare("INSERT INTO nba (name, points, games, rings) VALUES ($name, $points, $games, $rings");
 
-$my_Insert_Statement = $my_Db_Connection->prepare("INSERT INTO nba (name, points, games, rings) VALUES ($name, $points, $games, $rings");
-
-if (strlen($name <= 30)){
-    $my_Insert_Statement->bindParam(':name', $name);
+if (strlen($name >= 30)){
+  $dbInsert->bindParam(':name', $name);
 } else {
     header('input.php');
 }
- 
+
 $pMin = 1;
 $pMax = 50000;
-if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
-    echo("Variable value is not within the legal range");
+if (filter_var($points, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$pMin, "max_range"=>$pMax))) === false) {
+  header('input.php');
   } else {
-    echo("Variable value is within the legal range");
-  }
+    $dbInsert->bindParam(':points', $points);
+}
 
   $gMin = 1;
   $gMax = 5000;
-  if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
-    echo("Variable value is not within the legal range");
+if (filter_var($games, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$gMin, "max_range"=>$gMax))) === false) {
+  header('input.php');
   } else {
-    echo("Variable value is within the legal range");
-  }
+  $dbInsert->bindParam(':games', $games);
+}
 
   $rMin = 1;
   $rMax = 12;
-  if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
-    echo("Variable value is not within the legal range");
+if (filter_var($rings, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$rMin, "max_range"=>$rMax))) === false) {
+    header('input.php');
   } else {
-    echo("Variable value is within the legal range");
-  }
+    $dbInsert->bindParam(':rings', $rings);
+}
 
-$my_Insert_Statement->bindParam(':name', $name);
-$my_Insert_Statement->bindParam(':points', $points);
-$my_Insert_Statement->bindParam(':games', $games);
-$my_Insert_Statement->bindParam(':rings', $rings);
-
-
-
+$dbInsert->execute();
 ?>
+
