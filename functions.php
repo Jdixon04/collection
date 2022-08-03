@@ -46,3 +46,46 @@ $query->execute();
 $players = $query->fetchAll();
 return $players;
 }
+
+
+
+
+/**
+ * This function prepares the stats for entry into the databse by binding them to params and making a connection to the db
+ *
+ * @param string $name
+ * @param int $points
+ * @param int $games
+ * @param int $rings
+ * @param PDO $db
+ */
+function insertData ($name,$points,$games,$rings,$db){
+    $dbInsert = $db->prepare("INSERT INTO `nba` (`name`, `points`, `games`, `rings`) VALUES (:player, :points, :games, :rings)");
+    if (strlen($name <= 30)){
+        $dbInsert->bindParam(':player', $name);
+    } else {
+        header('input.php');
+    }
+    $dbInsert->bindParam(':points', $points);
+    $dbInsert->bindParam(':games', $games);
+    $dbInsert->bindParam(':rings', $rings);
+    $dbInsert->execute();
+    header('location: display.php');
+}
+
+
+/**
+ * This function checks to see if the varible stat falls within a permitted range
+ *
+ * @param int $stat
+ * @param int $min
+ * @param int $max
+ * @return $stat this returns the checked value in the varible if it passes
+ */
+function validiateInfo ($stat,$min,$max){
+    if (filter_var($stat, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
+        header('input.php');
+    } else {
+        return $stat;
+    }
+}
