@@ -27,10 +27,10 @@ if (isset($_POST['rings']) && ($_POST['rings'] !== '')){
  header('location:  input.php');
  }
  
-$dbInsert = $db->prepare("INSERT INTO nba (name, points, games, rings) VALUES ($name, $points, $games, $rings");
+$dbInsert = $db->prepare("INSERT INTO `nba` (`name`, `points`, `games`, `rings`) VALUES (:player, :points, :games, :rings)");
 
-if (strlen($name >= 30)){
-  $dbInsert->bindParam(':name', $name);
+if (strlen($name <= 30)){
+  $dbInsert->bindParam(':player', $name);
 } else {
     header('input.php');
 }
@@ -60,5 +60,8 @@ if (filter_var($rings, FILTER_VALIDATE_INT, array("options" => array("min_range"
 }
 
 $dbInsert->execute();
+
+header('location: display.php');
+
 ?>
 
