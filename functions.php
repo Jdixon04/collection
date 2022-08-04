@@ -6,7 +6,8 @@
 //  * @param array $players
 //  * @return echos out the details from the player
 //  */
-function displayPlayers(array $players){
+function displayPlayers(array $players)
+{
     if (count($players) == 0){
         return 'no data';
     } else {
@@ -27,7 +28,8 @@ function displayPlayers(array $players){
 //  * @param 
 //  * @return returns the database into the $db var
 //  */
-function connectDatabase():PDO{
+function connectDatabase():PDO
+{
     $db = new PDO('mysql:host=db; dbname=cuttlefish', 'root', 'password');
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
@@ -40,11 +42,12 @@ function connectDatabase():PDO{
 //  * @param array $db
 //  * @return it reutrns the players stats into an assoc array 
 //  */
-function pullData(PDO $db):array{
-$query = $db->prepare("SELECT `name`, `points`, `games`,`rings` FROM `nba`");
-$query->execute();
-$players = $query->fetchAll();
-return $players;
+function pullData(PDO $db):array
+{
+    $query = $db->prepare("SELECT `name`, `points`, `games`,`rings` FROM `nba`");
+    $query->execute();
+    $players = $query->fetchAll();
+    return $players;
 }
 
 
@@ -59,7 +62,8 @@ return $players;
  * @param int $rings
  * @param PDO $db
  */
-function insertData (string $name,int $points,int $games,int $rings,PDO $db){
+function insertData (string $name,int $points,int $games,int $rings,PDO $db)
+{
     $dbInsert = $db->prepare("INSERT INTO `nba` (`name`, `points`, `games`, `rings`) VALUES (:player, :points, :games, :rings)");
     if (strlen($name) <= 30){
         $dbInsert->bindParam(':player', $name);
@@ -82,7 +86,8 @@ function insertData (string $name,int $points,int $games,int $rings,PDO $db){
  * @param int $max
  * @return $stat this returns the checked value in the varible if it passes
  */
-function validiateInfo (int $stat,int $min,int $max):int{
+function validiateInfo (int $stat,int $min,int $max):int
+{
     if (filter_var($stat, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
         header('input.php');
     } else {
