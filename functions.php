@@ -70,8 +70,7 @@ function insertData (string $name,int $points,int $games,int $rings,PDO $db)
         $dbInsert->bindParam(':points', $points);
         $dbInsert->bindParam(':games', $games);
         $dbInsert->bindParam(':rings', $rings);
-        $dbInsert->execute();
-        return true;
+        return $dbInsert->execute();
     } else {
       return false;
     }
