@@ -1,16 +1,23 @@
+<?php 
+require_once 'functions.php';
+
+$db = connectDatabase();
+
+$players = pullData($db);
+
+$result = displayPlayers($players);
+?>
+
 <html>
-    <head></head>
+    <head>
+        <link href="styles.css" type="text/css" rel="stylesheet" />
+    </head>
     <body>
-        <form action='hidden.php' method='POST'>
-            <p><input type='text' name='name' id="name"/>
-            <label for="name">What's their name?</label></p>
-            <p><input type='text' name='points' id="points"/>
-            <label for="points">How many points?</label></p>
-            <p><input type='text' name='games' id="games"/>
-            <label for="games">How many games?</label></p>
-            <p><input type='text' name='rings' id="rings"/>
-            <label for="rings">How many rings?</label></p>
-            <input type='submit' />
-        </form>
+        <h1>NBA Player stats</h1>
+        <main class= "mainTable">
+            <div class= "individualStats"> <?echo $result?> </div>
+            <link href="styles.css" type="text/css" rel="stylesheet" />
+        </main>
+        <a class= "button" href="input.php">want to create a new player? Click here!</a>
     </body>
 </html>
