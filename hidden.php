@@ -14,14 +14,12 @@ if (
   empty($_POST['rings']))
 {
   header('location: input.php');
+
 } else {
   $name = $_POST['name']; 
-  $points = $_POST['points']; 
-  $games = $_POST['games'];
-  $rings = $_POST['rings']; 
-  $points = validiateInfo($points,min,pMax);
-  $games = validiateInfo($games,min,gMax);
-  $rings = validiateInfo($rings,min,rMax);
+  $points = validiateInfo($_POST['points'],min,pMax);
+  $games = validiateInfo($_POST['games'],min,gMax);
+  $rings = validiateInfo($_POST['rings'],min,rMax);
 }
 
 if (insertData($name,$points,$games,$rings,$db)){
