@@ -14,7 +14,6 @@ if (
   empty($_POST['rings']))
 {
   header('location: input.php');
-
 } else {
   $name = $_POST['name']; 
   $points = validiateInfo($_POST['points'],min,pMax);
