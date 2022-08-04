@@ -24,7 +24,7 @@ if (
   $rings = validiateInfo($rings,min,rMax);
 }
 
-if (insertData($name,$points,$games,$rings,$db) == 1){
+if (insertData($name,$points,$games,$rings,$db)){
   header ('location: display.php');
 } else {
   header ('location: input.php');
