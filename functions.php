@@ -59,18 +59,18 @@ return $players;
  * @param int $rings
  * @param PDO $db
  */
-function insertData ($name,$points,$games,$rings,$db){
+function insertData (string $name,int $points,int $games,int $rings,PDO $db){
     $dbInsert = $db->prepare("INSERT INTO `nba` (`name`, `points`, `games`, `rings`) VALUES (:player, :points, :games, :rings)");
-    if (strlen($name <= 30)){
+    if (strlen($name) <= 30){
         $dbInsert->bindParam(':player', $name);
+        $dbInsert->bindParam(':points', $points);
+        $dbInsert->bindParam(':games', $games);
+        $dbInsert->bindParam(':rings', $rings);
+        $dbInsert->execute();
+        return true;
     } else {
-        header('input.php');
+      return false;
     }
-    $dbInsert->bindParam(':points', $points);
-    $dbInsert->bindParam(':games', $games);
-    $dbInsert->bindParam(':rings', $rings);
-    $dbInsert->execute();
-    header('location: display.php');
 }
 
 
@@ -82,7 +82,7 @@ function insertData ($name,$points,$games,$rings,$db){
  * @param int $max
  * @return $stat this returns the checked value in the varible if it passes
  */
-function validiateInfo ($stat,$min,$max){
+function validiateInfo (int $stat,int $min,int $max):int{
     if (filter_var($stat, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
         header('input.php');
     } else {

@@ -40,17 +40,14 @@ class unitTests extends TestCase  {
         $case = displayPlayers($testInput1);
         
     }
-}
 
 
-
-class Functions extends TestCase {
     public function testSuccessWithinRange()
     {
         //expected result of the test
         $expected = 1;
         //input for the test to get the result
-        $testInput1 = 3;
+        $testInput1 = 1;
         $testInput2 = 1;
         $testInput3 = 100;
         //run the real function with the input
