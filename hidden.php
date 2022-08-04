@@ -2,12 +2,10 @@
 require_once 'functions.php';
 
 $db = connectDatabase();
-$pMin = 1;
-$pMax = 50000;
-$gMin = 1;
-$gMax = 5000;
-$rMin = 1;
-$rMax = 12;
+const min = 1;
+const pMax = 50000;
+const gMax = 5000;
+const rMax = 12;
 
 if (
   empty($_POST['name']) &&
@@ -21,9 +19,9 @@ if (
   $points = $_POST['points']; 
   $games = $_POST['games'];
   $rings = $_POST['rings']; 
-  $points = validiateInfo($points,$pMin,$pMax);
-  $games = validiateInfo($games,$gMin,$gMax);
-  $rings = validiateInfo($rings,$rMin,$rMax);
+  $points = validiateInfo($points,min,pMax);
+  $games = validiateInfo($games,min,gMax);
+  $rings = validiateInfo($rings,min,rMax);
 }
 
 if (insertData($name,$points,$games,$rings,$db) == 1){
