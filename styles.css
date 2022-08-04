@@ -1,0 +1,61 @@
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+    display: flex;
+    align-content: center;
+    justify-content: center
+}
+
+body {
+	margin: 0;
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+
+div {
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    width:48%;
+    margin: 5px;
+    border: 2px solid black;
+
+}
+
+
+.mainTable {
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: column;
+    width:100%;
+    align-content: center
+}
+
+a {
+    height: 15px;
+    width: 30%;
+}
+
+p {
+    margin: 0px;
+    width: 100%;
+}
+
+.button {
+    display: block;
+    width: 300px;
+    height: 25px;
+    background: #4E9CAF;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+    margin: 10px;
+    margin-left: 38%;
+}
