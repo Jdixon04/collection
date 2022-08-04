@@ -13,10 +13,10 @@ function displayPlayers(array $players)
     } else {
     $result = '';
     foreach($players as $player){
-        $result .= '<p>Name: ' . $player['name'] . '</p>';
+        $result .= '<div>Name: ' . $player['name'] . '</p>';
         $result .= '<p>points: ' . $player['points'] . '</p>';
         $result .= '<p>games: ' . $player['games'] . '</p>';
-        $result .= '<p>rings: ' . $player['rings'] . '</p>';
+        $result .= '<p>rings: ' . $player['rings'] . '</div>';
     } 
     return $result;
 }

@@ -22,7 +22,7 @@ if (
 }
 
 if (insertData($name,$points,$games,$rings,$db)){
-  header ('location: display.php');
+  header ('location: index.php');
 } else {
   header ('location: input.php');
 }
