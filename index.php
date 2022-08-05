@@ -16,7 +16,6 @@ $result = displayPlayers($players);
         <h1>NBA Player stats</h1>
         <main class= "mainTable">
             <div class= "individualStats"> <?echo $result?> </div>
-            <link href="styles.css" type="text/css" rel="stylesheet" />
         </main>
         <a class= "button" href="input.php">want to create a new player? Click here!</a>
     </body>
